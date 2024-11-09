@@ -1,0 +1,7 @@
+Django==5.0.4
+python-dotenv==1.0.1
+six==1.16.0
+validate_email==1.3
+weasyprint==62.3
+xlwt==1.3.0
+gunicorn

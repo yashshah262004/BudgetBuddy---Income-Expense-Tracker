@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>PDF Output</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        /* General Page Setup */
+        @page {
+            size: A4;
+            margin: 2.5cm 1.5cm 3.5cm 1.5cm;
+        
+            /* Header */
+            @top-center {
+                content: "BudgetBuddy";
+                font-size: 30px; /* Increase the font size */
+                font-weight: bold; /* Make it bold */
+                color: #2d6a4f; /* Dark green color */
+            }
+        
+            /* Footer with Page Numbers */
+            @bottom-right {
+                content: "Page " counter(page) " of " counter(pages);
+            }
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f9f5; /* Light green theme background */
+            color: #333;
+        }
+
+        /* Table Styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #fff; /* White background for table */
+            border-radius: 10px; /* Rounded corners for table */
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border: 1px solid #e2e8f0; /* Light border */
+        }
+
+        th {
+            background-color: #38b000; /* Dark green header */
+            color: white; /* White text for headers */
+            font-weight: bold;
+        }
+
+        tr:nth-child(even) {
+            background-color: #e9f7ee; /* Light green rows */
+        }
+
+        /* Total Row */
+        .total-row td {
+            font-weight: bold;
+            background-color: #c9ebd7; /* Slightly darker green for the total row */
+        }
+
+        h2 {
+            color: #2d6a4f; /* Dark green heading */
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Expense List</h2>
+
+    <table class="table">
+        <thead class="thead">
+            <tr>
+                <th>No.</th>
+                <th>Amount</th>
+                <th>Category</th>
+                <th>Description</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for expense in expenses %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ expense.amount }}</td>
+                <td>{{ expense.category }}</td>
+                <td>{{ expense.description }}</td>
+                <td>{{ expense.date }}</td>
+            </tr>
+            {% endfor %}
+            
+            <!-- Total Row -->
+            <tr class="total-row">
+                <td colspan="4">Total</td>
+                <td>{{ total }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>

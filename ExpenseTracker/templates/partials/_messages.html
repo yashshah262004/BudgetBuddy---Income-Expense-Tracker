@@ -1,0 +1,23 @@
+{% if messages %}
+<div class="messages" style="margin: 10px 0;">
+    {% for message in messages %}
+    <div{% if message.tags %} class="alert alert-sm alert-{{ message.tags }}" style="padding: 12px 20px; border-radius: 6px; margin-bottom: 10px; border: none; box-shadow: 0 2px 4px rgba(0,0,0,0.1); font-size: 14px; 
+        {% if message.tags == 'success' %}
+            background: linear-gradient(to right, #c8e6c9, #a5d6a7); 
+            color: #1b5e20;
+        {% elif message.tags == 'error' or message.tags == 'danger' %}
+            background: linear-gradient(to right, #ffcdd2, #ef9a9a); 
+            color: #c62828;
+        {% elif message.tags == 'warning' %}
+            background: linear-gradient(to right, #fff3e0, #ffe0b2); 
+            color: #e65100;
+        {% elif message.tags == 'info' %}
+            background: linear-gradient(to right, #e3f2fd, #bbdefb); 
+            color: #0d47a1;
+        {% endif %}
+        "{% endif %}>
+        {{ message }}
+    </div>
+    {% endfor %}
+</div>
+{% endif %}

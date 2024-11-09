@@ -1,0 +1,68 @@
+{% extends 'base_auth.html' %}
+{% load static %}
+
+{% block content %}
+<div class="row">
+  <div class="col-md-4"></div>
+  <div class="col-md-4">
+    <div class="card mt-5" style="border-radius: 15px; box-shadow: 0 4px 20px rgba(0,100,0,0.1); border: none; background: linear-gradient(145deg, #ffffff 0%, #f8fdf8 100%);">
+      <div class="card-body">
+        <div class="card-title py-3">
+          <h4 style="color: #2e7d32; font-weight: 600; text-align: center;">Register for a free account</h4>
+        </div>
+        <form action="{% url 'register' %}" method="post">
+          {% csrf_token %}
+          {% include 'partials/_messages.html' %}
+          <div class="form-group">
+            <input
+              type="text"
+              name="username"
+              placeholder="username"
+              id="usernameField"
+              value="{{fieldValues.username}}"
+              class="form-control form-control-sm"
+              style="border-radius: 8px; padding: 0.8rem; border: 1px solid #c8e6c9; background-color: #f5fbf5;"
+            />
+          </div>
+          <div class="invalid_feedback invalid-feedback" style="display:none">
+          </div>
+          <p class="text-sm text-success usernameSuccessOutput"></p>
+          <div class="form-group">
+            <input
+              type="email"
+              name="email"
+              placeholder="Email"
+              class="form-control form-control-sm"
+              id="emailField"
+              value="{{fieldValues.email}}"
+              style="border-radius: 8px; padding: 0.8rem; border: 1px solid #c8e6c9; background-color: #f5fbf5;"
+            />
+          </div>
+          <div class="emailFeedBackArea invalid-feedback" style="display:none">
+          </div>
+          <div class="form-group">
+            <input
+              type="password"
+              name="password"
+              placeholder="Password"
+              class="form-control form-control-sm"
+              id="passwordField"
+              style="border-radius: 8px; padding: 0.8rem; border: 1px solid #c8e6c9; background-color: #f5fbf5;"
+            />
+            <small class="float-right py-3 showPasswordToggle" style="color: #2e7d32; cursor: pointer; font-weight: 500;">SHOW</small>
+          </div>
+          <input type="submit" value="Register" class="btn btn-block btn-primary submit-btn" style="background: linear-gradient(90deg, #2e7d32 0%, #388e3c 100%); border: none; padding: 0.8rem; border-radius: 8px; font-weight: 500;" />
+        </form>
+
+        <div class="container" style="text-align: center; margin-top: 1.5rem;">
+          <span class="text-lead lead" style="color: #555;">Already have an account?</span>
+          <a href="{% url "login" %}" style="color: #2e7d32; text-decoration: none; font-weight: 500; margin-left: 0.5rem;">Login</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4"></div>
+</div>
+
+<script src="{% static 'js/register.js' %}"></script>
+{% endblock content %}

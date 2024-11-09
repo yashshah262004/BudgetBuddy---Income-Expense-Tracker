@@ -1,0 +1,99 @@
+{% extends 'base.html' %} 
+{% block content %}
+
+<div class="container mt-4" style="background: linear-gradient(to bottom right, #dbf3db, #227f26); padding: 20px; border-radius: 10px; box-shadow: 0 0 15px rgba(0,100,0,0.1);">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb" style="background: transparent;">
+      <li class="breadcrumb-item">
+        <a href="{% url 'expenses'%}" style="color: #2e7d32; text-decoration: none;">Expenses</a>
+      </li>
+      <li class="breadcrumb-item active" aria-current="page" style="color: #388e3c;">Add Expenses</li>
+    </ol>
+  </nav>
+
+  <div class="card" style="border: none; box-shadow: 0 2px 10px rgba(0,100,0,0.1); border-radius: 8px;">
+    <div class="card-body" style="background: linear-gradient(145deg, #dbf1dc, #f8fff8);">
+      <form action="{% url 'add-expenses' %}" method="post">
+        {% include 'partials/_messages.html'%}
+        {% csrf_token %}
+        
+        <div class="form-group">
+          <label for="amount" style="color: #2e7d32; font-weight: 500; margin-bottom: 5px;">Amount</label>
+          <input
+            type="text"
+            class="form-control form-control-sm"
+            name="amount"
+            value="{{ values.amount }}"
+            style="border: 1px solid #4caf50; border-radius: 5px; padding: 8px; transition: all 0.3s ease;"
+            onFocus="this.style.borderColor='#2e7d32'; this.style.boxShadow='0 0 0 0.2rem rgba(76, 175, 80, 0.25)'"
+            onBlur="this.style.borderColor='#4caf50'; this.style.boxShadow='none'"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="description" style="color: #2e7d32; font-weight: 500; margin-bottom: 5px;">Description</label>
+          <input
+            type="text"
+            class="form-control form-control-sm"
+            name="description"
+            value="{{ values.description }}"
+            style="border: 1px solid #4caf50; border-radius: 5px; padding: 8px; transition: all 0.3s ease;"
+            onFocus="this.style.borderColor='#2e7d32'; this.style.boxShadow='0 0 0 0.2rem rgba(76, 175, 80, 0.25)'"
+            onBlur="this.style.borderColor='#4caf50'; this.style.boxShadow='none'"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="category" style="color: #2e7d32; font-weight: 500; margin-bottom: 5px;">Category</label>
+          <select 
+            class="form-control" 
+            name="category"
+            style="border: 1px solid #4caf50; border-radius: 5px; padding: 8px; transition: all 0.3s ease;"
+            onFocus="this.style.borderColor='#2e7d32'; this.style.boxShadow='0 0 0 0.2rem rgba(76, 175, 80, 0.25)'"
+            onBlur="this.style.borderColor='#4caf50'; this.style.boxShadow='none'"
+          >
+            {% for category in categories %}
+              <option value="{{ category.name }}">{{ category.name }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="expense_date" style="color: #2e7d32; font-weight: 500; margin-bottom: 5px;">Date of Expense</label>
+          <input
+            type="date"
+            class="form-control form-control-sm"
+            name="expense_date"
+            id="expense_date"
+            value="{{ current_date }}"
+            style="border: 1px solid #4caf50; border-radius: 5px; padding: 8px; transition: all 0.3s ease;"
+            onFocus="this.style.borderColor='#2e7d32'; this.style.boxShadow='0 0 0 0.2rem rgba(76, 175, 80, 0.25)'"
+            onBlur="this.style.borderColor='#4caf50'; this.style.boxShadow='none'"
+          />
+        </div>
+
+        <input
+          type="submit"
+          value="Submit"
+          class="btn btn-primary btn-primary-sm"
+          style="background: linear-gradient(145deg, #2e7d32, #388e3c); border: none; padding: 8px 20px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.2); transition: all 0.3s ease;"
+          onMouseOver="this.style.transform='translateY(-1px)'; this.style.boxShadow='0 4px 8px rgba(0,0,0,0.2)'"
+          onMouseOut="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 5px rgba(0,0,0,0.2)'"
+        />
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Automatically set today's date in the date field if it's empty
+  document.addEventListener("DOMContentLoaded", function() {
+    var dateInput = document.getElementById('expense_date');
+    if (!dateInput.value) {
+        var today = new Date().toISOString().split('T')[0]; // Get today's date in YYYY-MM-DD format
+        dateInput.value = today;
+    }
+  });
+</script>
+
+{% endblock %}

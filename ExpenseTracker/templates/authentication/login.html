@@ -1,0 +1,65 @@
+{% extends 'base_auth.html' %}
+{% load static %}
+{% load socialaccount %}
+
+{% block content %}
+<div class="row">
+  <div class="col-md-4"></div>
+  <div class="col-md-4">
+    <div class="card mt-5" style="border-radius: 15px; box-shadow: 0 8px 30px rgba(46, 125, 50, 0.3); border: none; background: linear-gradient(135deg, #f0fff0 0%, #e8f5e9 100%);">
+      <div class="card-body">
+        <div class="card-title py-3">
+          <h4 style="color: #1b5e20; font-weight: 600; text-align: center;">Login to your account</h4>
+        </div>
+        <form action="{% url 'login' %}" method="post">
+          {% csrf_token %}
+          {% include 'partials/_messages.html' %}
+          <div class="form-group">
+            <input
+              type="text"
+              name="username"
+              placeholder="Username"
+              id="usernameField"
+              value="{{fieldValues.username}}"
+              class="form-control form-control-sm"
+              style="border-radius: 8px; padding: 0.8rem; border: 1px solid #a5d6a7; background-color: #f1f8e9; color: #2e7d32;"
+            />
+          </div>
+          <div class="form-group">
+            <input
+              type="password"
+              name="password"
+              placeholder="Password"
+              class="form-control form-control-sm"
+              id="passwordField"
+              style="border-radius: 8px; padding: 0.8rem; border: 1px solid #a5d6a7; background-color: #f1f8e9; color: #2e7d32;"
+            />
+          </div>
+          <input type="submit" value="Login" class="btn btn-block btn-primary submit-btn" style="background: linear-gradient(90deg, #388e3c 0%, #1b5e20 100%); border: none; padding: 0.8rem; border-radius: 8px; font-weight: 500; text-transform: uppercase;" />
+        </form>
+
+        <div class="container" style="text-align: center; margin-top: 1.5rem;">
+          <span class="text-lead lead" style="color: #4e4e4e;">Don't have an account?</span>
+          <a href="{% url "register" %}" style="color: #1b5e20; text-decoration: none; font-weight: 600; margin-left: 0.5rem;">Register</a><br><br>
+
+          <a href="{% provider_login_url 'google' %}?next=/" class="btn btn-outline-info google-btn" style="border-radius: 8px; border: 1px solid #64f683; color: #1b5e20;">
+            <i class="fab fa-google"></i>
+            Login with Google
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4"></div>
+</div>
+
+<script src="{% static 'js/register.js' %}"></script>
+
+<style>
+  .google-btn:hover {
+    background-color: #81c784; /* Light green shade */
+    border-color: #388e3c;     /* Darker green for border */
+    color: white;              /* White text for contrast */
+  }
+</style>
+{% endblock content %}

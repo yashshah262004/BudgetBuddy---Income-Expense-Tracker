@@ -1,0 +1,83 @@
+{% load static %}
+<nav class="col-md-2 d-none d-md-block bg-light sidebar" style="background: linear-gradient(180deg, #ffffff 0%, #f5f9f5 100%) !important; border-right: 1px solid #e0f2e9; box-shadow: 2px 0 10px rgba(0,0,0,0.05);">
+  <div class="sidebar-sticky" style="padding-top: 20px; background: #def6dd">
+    <ul class="nav flex-column" style="margin-bottom: 30px;">
+      <li class="nav-item">
+        <a class="nav-link active" href="#" style="color: #1a472a; font-weight: 600; padding: 12px 20px; border-left: 4px solid #2e8b57; background: rgba(46,139,87,0.1);">
+          <span data-feather="home" style="stroke-width: 2; margin-right: 8px;"></span>
+          Dashboard <span class="sr-only">(current)</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'expenses' %}" style="color: #2c614d; padding: 12px 20px; transition: all 0.3s ease; border-left: 4px solid transparent;" 
+           onmouseover="this.style.background='rgba(46,139,87,0.1)'; this.style.borderLeft='4px solid #2e8b57';" 
+           onmouseout="this.style.background='transparent'; this.style.borderLeft='4px solid transparent';">
+          Expenses
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'income' %}" style="color: #2c614d; padding: 12px 20px; transition: all 0.3s ease; border-left: 4px solid transparent;"
+           onmouseover="this.style.background='rgba(46,139,87,0.1)'; this.style.borderLeft='4px solid #2e8b57';" 
+           onmouseout="this.style.background='transparent'; this.style.borderLeft='4px solid transparent';">
+          Income
+        </a>
+      </li>
+    </ul>
+
+    <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted" 
+        style="color: #1a472a !important; font-weight: 700; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px;">
+      <span>Summary</span>
+      <a class="d-flex align-items-center text-muted" href="#" aria-label="Add a new report" 
+         style="color: #2e8b57 !important; transition: all 0.3s ease;"
+         onmouseover="this.style.color='#1a472a !important';" 
+         onmouseout="this.style.color='#2e8b57 !important';">
+        <span data-feather="plus-circle" style="stroke-width: 2;"></span>
+      </a>
+    </h6>
+    <ul class="nav flex-column mb-2">
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'stats'%}" style="color: #2c614d; padding: 12px 20px; transition: all 0.3s ease; border-left: 4px solid transparent;"
+           onmouseover="this.style.background='rgba(46,139,87,0.1)'; this.style.borderLeft='4px solid #2e8b57';" 
+           onmouseout="this.style.background='transparent'; this.style.borderLeft='4px solid transparent';">
+          Expenses Summary
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#" style="color: #2c614d; padding: 12px 20px; transition: all 0.3s ease; border-left: 4px solid transparent;"
+           onmouseover="this.style.background='rgba(46,139,87,0.1)'; this.style.borderLeft='4px solid #2e8b57';" 
+           onmouseout="this.style.background='transparent'; this.style.borderLeft='4px solid transparent';">
+          <span data-feather="file-text" style="stroke-width: 2; margin-right: 8px;"></span>
+          {% comment %} Income Summary {% endcomment %}
+        </a>
+      </li>
+    </ul>
+
+    <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted"
+        style="color: #1a472a !important; font-weight: 700; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px;">
+      <span>Settings</span>
+      <a class="d-flex align-items-center text-muted" href="#" aria-label="Add a new report"
+         style="color: #2e8b57 !important; transition: all 0.3s ease;"
+         onmouseover="this.style.color='#1a472a !important';" 
+         onmouseout="this.style.color='#2e8b57 !important';">
+        <span data-feather="plus-circle" style="stroke-width: 2;"></span>
+      </a>
+    </h6>
+    <ul class="nav flex-column mb-2">
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'preferences' %}" style="color: #2c614d; padding: 12px 20px; transition: all 0.3s ease; border-left: 4px solid transparent;"
+           onmouseover="this.style.background='rgba(46,139,87,0.1)'; this.style.borderLeft='4px solid #2e8b57';" 
+           onmouseout="this.style.background='transparent'; this.style.borderLeft='4px solid transparent';">
+          General
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#" style="color: #2c614d; padding: 12px 20px; transition: all 0.3s ease; border-left: 4px solid transparent;"
+           onmouseover="this.style.background='rgba(46,139,87,0.1)'; this.style.borderLeft='4px solid #2e8b57';" 
+           onmouseout="this.style.background='transparent'; this.style.borderLeft='4px solid transparent';">
+          <span data-feather="file-text" style="stroke-width: 2; margin-right: 8px;"></span>
+          {% comment %} Account {% endcomment %}
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>

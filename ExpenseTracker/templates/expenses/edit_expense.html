@@ -1,0 +1,88 @@
+{% extends 'base.html' %} 
+{% block content %}
+
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-md-10">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb" style="background: linear-gradient(to right, #e8f5e9, #c8e6c9); padding: 10px; border-radius: 5px;">
+          <li class="breadcrumb-item">
+            <a href="{% url 'expenses'%}" style="color: #2e7d32; text-decoration: none;">Expenses</a>
+          </li>
+          <li class="breadcrumb-item active" aria-current="page" style="color: #1b5e20;">
+            Edit Expense
+          </li>
+        </ol>
+      </nav>
+    </div>
+
+    <div class="col-md-2">
+      
+        <a href="{% url 'expense-delete' expense.id %}"
+        class="btn btn-danger btn-sm"
+        style="background: #c62828; border: none; box-shadow: 0 2px 4px rgba(0,0,0,0.2);"
+      >Delete</a>
+    </div>
+  </div>
+
+  <div class="card" style="border: none; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border-radius: 8px;">
+    <div class="card-body" style="background: linear-gradient(135deg, #f1f8e9, #dcedc8); border-radius: 8px;">
+      <form action="{% url 'expense-edit' expense.id %}" method="post">
+        {% include 'partials/_messages.html'%} 
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="" style="color: #2e7d32; font-weight: 500;">Amount</label>
+          <input
+            type="text"
+            class="form-control form-control-sm"
+            name="amount"
+            value="{{values.amount}}"
+            style="border: 1px solid #81c784; border-radius: 4px; padding: 8px;"
+          />
+        </div>
+        <div class="form-group">
+          <label for="" style="color: #2e7d32; font-weight: 500;">Description</label>
+          <input
+            type="text"
+            class="form-control form-control-sm"
+            name="description"
+            value="{{values.description}}"
+            style="border: 1px solid #81c784; border-radius: 4px; padding: 8px;"
+          />
+        </div>
+        <div class="form-group">
+          <label for="" style="color: #2e7d32; font-weight: 500;">Category</label>
+          <select class="form-control" name="category" style="border: 1px solid #81c784; border-radius: 4px; padding: 8px;">
+            <option selected name="category" value="{{values.category}}"
+              >{{values.category}}</option
+            >
+            {% for category in categories%}
+            <option name="category" value="{{category.name}}"
+              >{{category.name}}</option
+            >
+            {% endfor %}
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="" style="color: #2e7d32; font-weight: 500;">Date of Expense</label>
+          <input
+            type="date"
+            value="{{values.date | date:'Y-m-d' }}"
+            class="form-control form-control-sm"
+            name="expense_date"
+            style="border: 1px solid #81c784; border-radius: 4px; padding: 8px;"
+          />
+        </div>
+
+        <input
+          type="submit"
+          value="Save"
+          class="btn btn-primary btn-primary-sm"
+          style="background: linear-gradient(to right, #43a047, #2e7d32); border: none; padding: 8px 20px; border-radius: 4px; box-shadow: 0 2px 4px rgba(0,0,0,0.2); color: white; cursor: pointer;"
+        />
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
