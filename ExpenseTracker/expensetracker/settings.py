@@ -31,7 +31,8 @@ SECRET_KEY = 'django-insecure-4i$dwkkc8!-c(+guadpxiaf6@e-jvg1=du3yayz*c5fqofgoi@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['veershah12.pythonanywhere.com', '*']
+# ALLOWED_HOSTS = ['veershah12.pythonanywhere.com', '*']
+ALLOWED_HOSTS = ['your-netlify-site.netlify.app', 'https://merry-custard-5077e6.netlify.app/']  # Replace with your actual domain
 
 
 # Application definition
@@ -48,6 +49,7 @@ INSTALLED_APPS = [
     'userincome',
     'allauth',
     'allauth.account',
+    'whitenoise',
 
     # Optional -- requires install using `django-allauth[socialaccount]`.
     'allauth.socialaccount',
@@ -67,6 +69,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     "allauth.account.middleware.AccountMiddleware",
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'expensetracker.urls'
