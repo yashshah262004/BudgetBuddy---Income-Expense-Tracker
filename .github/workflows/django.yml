@@ -24,10 +24,10 @@ jobs:
           pip install -r requirements.txt
 
       - name: Set up Django environment
-        env:
-          SECRET_KEY: ${{ secrets.SECRET_KEY }}
-          DEBUG: 'false'
-          ALLOWED_HOSTS: 'yourdomain.com'  # Replace with your actual domain or Netlify site
+        run: |
+          echo "SECRET_KEY=${{ secrets.SECRET_KEY }}" >> $GITHUB_ENV
+          echo "DEBUG=false" >> $GITHUB_ENV
+          echo "ALLOWED_HOSTS=https://merry-custard-5077e6.netlify.app/" >> $GITHUB_ENV  # Replace with your actual domain or Netlify site
 
       - name: Run Django tests
         run: python manage.py test
@@ -35,7 +35,7 @@ jobs:
       - name: Collect static files
         run: python manage.py collectstatic --noinput
 
-      - name: Set up Node
+      - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '16'  # Adjust Node version if required
